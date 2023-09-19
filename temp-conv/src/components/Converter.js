@@ -44,7 +44,7 @@ function Converter() {
       } else if (name === "Celsius") {
         //convert from celsius to farenheit
         const converted =
-          temprature === celsius ? celsius : ((fahrenheit - 32) * 5) / 9;
+          temprature === celsius ? celsius : ((fahrenheit - 32) * (5 / 9));
         setConvTemp(converted);
       }
     }
