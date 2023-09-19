@@ -7,14 +7,17 @@ function Converter() {
   const [temprature, setTemprature] = useState(""); // default state for temrature user entered value
   const [radioButton, setRadioButton] = useState("Celsius"); //set default value of radio Button to celcious
   const [convTemp, setConvTemp] = useState(""); // converted temprature to show on UI
+  const [unit, setUnit] = useState("") // hold the unit for calculated tempratue
 
   const handleClickSwap = () => {
     //function for toggle the radio button and recalculated the temprature by calling the function 
     if (radioButton === "Celsius") {
       setRadioButton("Fahrenheit");
+      setUnit("°F")
       handleRaioChange("Fahrenheit");
     } else {
       setRadioButton("Celsius");
+      setUnit("°C")
       handleRaioChange("Celsius");
     }
   };
@@ -24,9 +27,11 @@ function Converter() {
     if (temprature !== "") {
       if (radioButton === "Celsius") {
         setCelsius(temprature);
+        setUnit("°C")
         setFahrenheit("");
       } else {
         setFahrenheit(temprature);
+        setUnit("°F")
         setCelsius("");
       }
 
@@ -40,11 +45,13 @@ function Converter() {
         //convert from farenheit to celsius
         const converted =
           temprature === fahrenheit ? fahrenheit : celsius * (9 / 5) + 32;
+          setUnit("°F")
         setConvTemp(converted);
       } else if (name === "Celsius") {
         //convert from celsius to farenheit
         const converted =
           temprature === celsius ? celsius : ((fahrenheit - 32) * (5 / 9));
+          setUnit("°C")
         setConvTemp(converted);
       }
     }
@@ -90,7 +97,7 @@ function Converter() {
       </div>
 
       <p>Translated Temrature</p>
-      <div className="resultDiv">{convTemp}</div>
+      <div className="resultDiv">{convTemp}{unit}</div>
       <button className="swapButton" onClick={handleClickSwap}>
         Swap
       </button>
