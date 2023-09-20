@@ -13,11 +13,11 @@ function Converter() {
     //function for toggle the radio button and recalculated the temprature by calling the function
     if (radioButton === "Celsius") {
       setRadioButton("Fahrenheit");
-      temprature!==""?setUnit("°F"):setUnit("");
+      temprature !== "" ? setUnit("°F") : setUnit("");
       handleRaioChange("Fahrenheit");
     } else {
       setRadioButton("Celsius");
-      temprature!==""?setUnit("°C"):setUnit("");
+      temprature !== "" ? setUnit("°C") : setUnit("");
       handleRaioChange("Celsius");
     }
   };
@@ -58,9 +58,13 @@ function Converter() {
       }
     }
   };
+  //condition to check hot temprature
+  const tempCheck =
+    (radioButton === "Fahrenheit" && convTemp > 98.6) ||
+    (radioButton === "Celsius" && convTemp > 37);
 
   return (
-    <div className="converter">
+    <div className={tempCheck ? "highTempConverter" : "converter"}>
       <p> Enter Temprature value to Convert</p>
 
       <input
@@ -98,11 +102,17 @@ function Converter() {
         </span>
       </div>
 
-      <p>Translated Temrature</p>
+      <p>Converted Temrature</p>
       <div className="resultDiv">
         {convTemp}
         {unit}
       </div>
+      {(radioButton === "Fahrenheit" && convTemp > 98.6) ||
+      (radioButton === "Celsius" && convTemp > 37) ? (
+        <p style={{ color: "blue" }}>Converted temprature is hot</p>
+      ) : (
+        ""
+      )}
       <button className="swapButton" onClick={handleClickSwap}>
         Swap
       </button>

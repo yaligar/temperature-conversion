@@ -23,7 +23,7 @@ describe("Unit testing for converter", () => {
     test("to check paragraph tags rendered.",()=>{
         expect(wrapper.find("p")).toHaveLength(2)
         expect(wrapper.find("p").at(0).text()).toMatch(" Enter Temprature value to Convert")
-        expect(wrapper.find("p").at(1).text()).toMatch("Translated Temrature")
+        expect(wrapper.find("p").at(1).text()).toMatch("Converted Temrature")
     })
     test("to check input tag rendered.",()=>{
         const wrapper = shallow(
